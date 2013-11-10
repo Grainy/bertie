@@ -1,3 +1,37 @@
 html, body 
   position relative
   height 100%
+
+#right
+	background #0ff
+
+#center1
+	background #ff0
+
+#center2
+	background #f00
+
+#left
+	background #0f0
+
+.slide
+	width 25%
+	min-height 100%
+	float left
+	transition width 1s ease
+	position relative
+
+	&.inactive
+		width 3.3%
+	&.active
+		width 90%
+.content
+	width 80%
+	height 300px
+	margin 100px auto
+	background #fff
+	opacity 0
+	transition opacity 0.5s ease
+
+	&.active
+		opacity 1
