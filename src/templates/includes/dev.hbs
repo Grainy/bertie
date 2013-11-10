@@ -1,0 +1,45 @@
+<script>
+	// Developer Tools
+
+	// Click events
+	window.addEventListener('click', function (e) {
+				
+		// Hold shift and click to console log CSS position of hit area
+		if (e.shiftKey) {
+
+			var reference = window.prompt('Reference(s):', '');
+
+			// Define the hit point size area in pixels (width & height)
+			var hitArea = 40,
+				x = e.pageX-(hitArea/2),
+				y = e.pageY-(hitArea/2),
+				page = document.title;
+
+			if (reference !== null && reference !== '') {
+				var data = {
+						"page": page,
+						"reference": reference,
+						"position": {
+							"x": x,
+							"y": y
+						}
+					},
+					endpoint = 'ref';
+
+				ajaxApi(endpoint, data);
+			}
+		}
+	}, false);
+ 
+
+	function ajaxApi (endpoint, data) {
+
+		$.ajax({
+			url: 'http://127.0.0.1:3001/'+endpoint,
+			type: 'post',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify(data)
+		});
+	}
+</script>
