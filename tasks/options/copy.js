@@ -31,6 +31,14 @@ module.exports = {
 			dest: 'dist/assets/css',
 		},
 	]},
+	fonts: {
+		files: [{
+			expand: true,
+			cwd: 'src/assets/fonts/',
+			src: '**',
+			dest: 'dist/assets/fonts',
+		},
+	]},
 	root: {
 		files: [{
 			expand: true,

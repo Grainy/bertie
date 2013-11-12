@@ -23,6 +23,10 @@ module.exports = {
 		files: ['src/assets/img/**/**'],
 		tasks: ['copy:img'],
 	},
+	fonts: {
+		files: ['src/assets/fonts/**'],
+		tasks: ['copy:fonts'],
+	},
 	root: {
 		files: ['src/**.ico'],
 		tasks: ['copy:root'],

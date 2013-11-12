@@ -1,18 +1,21 @@
 html, body 
   position relative
   height 100%
-
+  font-family font-family
+  -webkit-font-smoothing antialiased
+  overflow hidden
+  
 #right
-	background #0ff
+	background #9b9b9b
 
 #center1
-	background #ff0
+	background #878787
 
 #center2
-	background #f00
+	background #747474
 
 #left
-	background #0f0
+	background #606060
 
 .slide
 	width 25%
@@ -26,12 +29,16 @@ html, body
 	&.active
 		width 90%
 .content
-	width 80%
-	height 300px
-	margin 100px auto
-	background #fff
 	opacity 0
 	transition opacity 0.5s ease
+	cursor default
 
 	&.active
 		opacity 1
+		cursor text
+
+.contentLarge
+	width 90%
+	height 300px
+	margin 100px auto
+	background #fff
