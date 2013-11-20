@@ -4,6 +4,10 @@ html, body
   font-family font-family
   -webkit-font-smoothing antialiased
   overflow hidden
+
+p
+	color #fff
+	padding 1em
   
 #right
 	background #9b9b9b
@@ -37,13 +41,29 @@ html, body
 		opacity 1
 		cursor text
 
-.contentLarge
+.wrapper
 	width 90%
-	height 300px
-	margin 100px auto
-	background #fff
+	height 500px
+	margin 30px auto
+	background rgba(0,0,0,0.2)
+	overflow hidden
+	position relative
 
-.navIcon
-	font-size 2em
-	color yellow
+.icon
+	width 20px
 	margin 10px
+
+.myScrollbarV
+	position absolute
+	z-index 100
+	width 13px 
+	bottom 7px 
+	top:2px 
+	right 1px
+	background rgba(0,0,0,0.5)
+
+.myScrollbarV > div
+	position absolute
+	z-index 100
+	width 100%
+	background #fff
