@@ -1,0 +1,36 @@
+@media screen and (max-width: 1000px)
+	html, body
+		overflow visible
+
+	.slide
+		&.inactive
+			width 7%
+		&.active
+			width 79%
+
+	.wrapper
+		margin 0 auto
+		height 250px
+
+	#about
+		.imgContainer
+			float none
+			margin-top 0
+			width auto
+ 
+@media screen and (max-width: 360px)
+	.slide
+		width 100%
+		min-height 0
+		height 50px
+		float none
+		transition height 1s ease
+
+		&.inactive
+			height 38px
+			width 100%
+		&.active
+			height 500px
+			width 100%
+	.wrapper
+		height 440px

@@ -1,8 +1,30 @@
 var disableMouse = false;
-var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
-touchType = 'touchstart click';
+var touchType = 'touchstart click';
 
 var app = (function () {
+	function _adbarhide () {
+		if(navigator.userAgent.match(/Android/i)){
+			window.scrollTo(0,1);
+		}
+	}
+
+	function _porthover () {
+		$('#portImg4').hover(function(){
+			$('#portfolioBlurb').html('<h2>5 Days, 5 apps</h2><p>Day 3 of my 5 days 5 apps project. I created a simple todo list using Angular JS and Underscore.</p><p>The source code is avaliable on <a href="https://github.com/Grainy/fdfa-day3/">GitHub</a> </p>');
+		});
+
+		$('#portImg3').hover(function(){
+			$('#portfolioBlurb').html('<h2>5 Days, 5 apps</h2><p>Day 2 of my 5 days 5 apps project. Using Ember, Handlebars, Showdown, and Moment, I built a single page web app showing editable blog posts and an about section.</p> <p>The source code is avaliable on <a href="https://github.com/Grainy/fdfa-day2/">GitHub</a> </p>');
+		});
+
+		$('#portImg2').hover(function(){
+			$('#portfolioBlurb').html('<h2>5 Days, 5 apps</h2><p>I had a week off work where I\'m a front-end dev. So I\'m going to spend this week developing! My aim is to create 5 simple apps in 5 days using frameworks and libraries I\'ve never used, or don\'t know too much about.</p><p> Todays app used Backbone and Underscore to build a one page app listing users. I also added the ability to edit or delete the users.</p><p>The source code is avaliable on <a href="https://github.com/Grainy/fdfa-day1/">GitHub</a> </p>');
+		});
+
+		$('#portImg1').hover(function(){
+			$('#portfolioBlurb').html('<h2>The old site</h2><p>This was the old design for my personal website, unfortunately the work linked to from its portfolio is no longer avaliable as it was hosted on my universitys server, and like the fool I am, I didn\'t retrieve it before it got deleted :( </p>');
+		});
+	}
 
 	function _slideControl () {
 		$('.slide').on(touchType, function() {
@@ -72,61 +94,98 @@ var app = (function () {
 		});
 	}
 
-	function _portfolioScroll () {
-		var initiated = false;
-		$('#center2').on(touchType, function() {
-			if (initiated === false) {
+	function _scrollers () {
+		var portfolioInitiated = false;
+		var aboutInitiated = false;
+		var contactInitiated = false;
+
+		$('#portfolio').on(touchType, function() {
+			_portfolioScroll();
+			portfolioInitiated = true;
+		});
+
+		$('#about').on(touchType, function() {
+			_aboutScroll();
+			aboutInitiated = true;
+		});
+
+		$('#contact').on(touchType, function() {
+			_contactScroll();
+			contactInitiated = true;
+		});
+
+		$(document).keydown(function(e){
+			if (e.keyCode == 37) {
+				if ($('*[data-slide="2"]').hasClass('active')) {
+					_portfolioScroll();
+					portfolioInitiated = true;
+				} else if ($('*[data-slide="3"]').hasClass('active')) {
+					_aboutScroll();
+					aboutInitiated = true;
+				} else if ($('*[data-slide="4"]').hasClass('active')) {
+					_contactScroll();
+					contactInitiated = true;
+				}
+			}
+
+			if (e.keyCode == 39) {
+				if ($('*[data-slide="2"]').hasClass('active')) {
+					_portfolioScroll();
+					portfolioInitiated = true;
+				} else if ($('*[data-slide="3"]').hasClass('active')) {
+					_aboutScroll();
+					aboutInitiated = true;
+				}
+			}
+		});
+
+		function _portfolioScroll () {
+			if (portfolioInitiated === false) {
 				setTimeout(function() {
 					var portfolioScroll = new iScroll('portfolioWrapper', {
 						hScrollbar: false,
 						vScrollbar: true,
-						scrollbarClass: 'myScrollbar'
+						scrollbarClass: 'myScrollbar',
+						bounce: false
 					});
 				}, 1000);
 			}
-			initiated = true;
-		});
-	}
+		}
 
-	function _aboutScroll () {
-		var initiated = false;
-		$('#center1').on(touchType, function() {
-			if (initiated === false) {
+		function _aboutScroll () {
+			if (aboutInitiated === false) {
 				setTimeout(function() {
 					var aboutScroll = new iScroll('aboutWrapper', {
 						hScrollbar: false,
 						vScrollbar: true,
-						scrollbarClass: 'myScrollbar'
+						scrollbarClass: 'myScrollbar',
+						bounce: false
 					});
 				}, 1000);
 			}
-			initiated = true;
-		});
-	}
+		}
 
-	function _contactScroll () {
-		var initiated = false;
-		$('#left').on(touchType, function() {
-			if (initiated === false) {
+		function _contactScroll () {
+			if (contactInitiated === false) {
 				setTimeout(function() {
 					var contactScroll = new iScroll('contactWrapper', {
 						hScrollbar: false,
 						vScrollbar: true,
-						scrollbarClass: 'myScrollbar'
+						scrollbarClass: 'myScrollbar',
+						bounce: false
 					});
 				}, 1000);
 			}
-			initiated = true;
-		});
+		}
 	}
 
 
 	function init () {
+		_adbarhide();
 		_slideControlKeypress();
 		_slideControl();
-		_portfolioScroll();
-		_aboutScroll();
-		_contactScroll();
+		_scrollers();
+		_porthover();
 	}
 
 	return {
